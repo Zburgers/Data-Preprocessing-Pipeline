@@ -1,0 +1,43 @@
+# .cursorrules
+
+project_type: "fullstack platform"
+language: "Python, JavaScript"
+frameworks: ["FastAPI", "Next.js", "Tailwind CSS", "Celery"]
+libraries:
+  backend: ["pandas", "numpy", "scikit-learn", "transformers", "datasets", "tokenizers", "pydantic", "aiofiles"]
+  frontend: ["react", "shadcn/ui", "axios", "framer-motion"]
+  pipeline: ["huggingface", "opencv", "Pillow", "torchaudio", "tensorflow", "torch"]
+  infra: ["docker", "redis", "postgresql", "s3"]
+
+entry_files:
+  backend: ["src/main.py", "src/api.py", "src/pipeline_engine.py"]
+  frontend: ["app/page.tsx", "app/upload.tsx", "components/steps.tsx"]
+  infra: ["docker-compose.yml", "scripts/bootstrap.sh"]
+
+db_structure_file: "db_structure.md"
+project_spec_file: "project_specs.md"
+
+goals:
+  - Build a scalable, production-grade multimodal data preprocessing pipeline platform
+  - Allow users to upload raw data (text, image, audio, tabular, etc.)
+  - Dynamically detect format and purpose, then output model-ready datasets
+  - Include task-specific pipelines: classification, regression, NER, object detection, etc.
+  - Provide pluggable, modular pipeline step architecture
+  - Frontend must support seamless upload, task selection, pipeline preview and export
+  - Backend must be fast, async, dockerized, and horizontally scalable
+  - Provide CLI and API options for automation/integration
+  - Ensure full test coverage, logging, and monitoring hooks
+
+principles:
+  - Production-ready from day one: use scalable tools, modular patterns
+  - Resilient to bad data: validations at each step
+  - Pluggable architecture: every transformation step is replaceable
+  - Auto-suggest improvements using ML agents
+  - No hardcoded formats — fully schema-agnostic pipeline logic
+  - No preprocessing lock-in — outputs must work in HF/TF/PT pipelines
+
+security:
+  - Validate all file uploads (MIME type + size limits)
+  - Sanitize file inputs before processing
+  - Secure API endpoints and implement rate limiting
+  - Log user actions and errors without exposing PII
